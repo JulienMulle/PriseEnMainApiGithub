@@ -1,10 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card } from 'semantic-ui-react';
 import Repo from './Repo.js';
 
 import './style.scss';
 
-function ReposResults() {
+function ReposResults({results}) {
+      // on peut préparer d'abord la liste puis la passer au JSX
+  // ou le faire directement dans le JSX
+  // const reposList = results.map((result) => <Repo key={result.id} {...result} />);
   return (
    
       <Card.Group
@@ -13,21 +17,16 @@ function ReposResults() {
       itemsPerRow={3}
       stackable
       >
-      <Repo />
-      <Repo />
-      <Repo />
-      <Repo />
-      <Repo />
-      <Repo />
-      <Repo />
-      <Repo />
-      <Repo />
-      <Repo />
-      <Repo />
-      <Repo />
+{results.map((result) => <Repo key={result.id} {...result} />)}
     </Card.Group>
 
   );
+}
+
+ReposResults.propTypes = {
+    results: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+    })).isRequired,
 }
 
 export default ReposResults;
