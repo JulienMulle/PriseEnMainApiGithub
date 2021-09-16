@@ -1,5 +1,8 @@
 // == Import npm
-import React from 'react';
+import React, { useState } from 'react';
+
+
+//components
 import Header from 'src/components/Header';
 import SearchBar from 'src/components/SearchBar';
 import Message from 'src/components/Message';
@@ -21,12 +24,14 @@ function App() {
     login: item.owner.login,
   }));
 
+  const [results, setResults] = useState(trimmedData);
+
   return(
   <div className="app">
     <Header />
     <SearchBar />
     <Message content={`La recherche a donné ${reposData.total_count} résultats`}/>
-    <ReposResults results={trimmedData} />
+    <ReposResults results={results} />
   </div>
   );
 }
