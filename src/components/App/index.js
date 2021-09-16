@@ -25,11 +25,17 @@ function App() {
   }));
 
   const [results, setResults] = useState(trimmedData);
+  // state pour gérer ce qu'il y a dans l'input text
+  const [search, setSearch] = useState('');
+  // state qui va prendre le nom qu'on placera dans la requête
+  const [query, setQuery] = useState('');
 
   return(
   <div className="app">
     <Header />
-    <SearchBar />
+    <SearchBar 
+    onFormSubmit={setQuery}
+    inputValue= {search} />
     <Message content={`La recherche a donné ${reposData.total_count} résultats`}/>
     <ReposResults results={results} />
   </div>

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-function SearchBar({ onFormSubmit }) {
+function SearchBar({ onFormSubmit, inputValue }) {
     const handleOnSubmit = ()=> {
             // ici pas besoin de faire event.preventDefault
     // c'est déjà prévu dans le composant Form de SUI
@@ -22,6 +22,7 @@ function SearchBar({ onFormSubmit }) {
             iconPosition="left"
             placeholder="Votre recherche"
             fluid
+            value = {inputValue}
           />
         </Form>
       </Segment>
@@ -31,6 +32,7 @@ function SearchBar({ onFormSubmit }) {
 
 SearchBar.propTypes = {
     onFormSubmit: PropTypes.func.isRequired,
+    inputValue: PropTypes.string.isRequired,
   };
 
 export default SearchBar;
