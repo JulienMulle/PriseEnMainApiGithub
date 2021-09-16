@@ -1,18 +1,20 @@
 // == Import npm
 import React from 'react';
+import Header from 'src/components/Header';
+import SearchBar from 'src/components/SearchBar';
+import Message from 'src/components/Message';
+import ReposResults from 'src/components/ReposResults';
 
 // == Import
-
 import './style.scss';
 
 // == Composant
 const App = () => (
   <div className="app">
-    <header>Header</header>
-    <div>SearchBar</div>
-    <div>Message</div>
-    <div>ReposResults</div>
-    
+    <Header />
+    <SearchBar />
+    <Message />
+    <ReposResults />
   </div>
 );
 
