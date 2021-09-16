@@ -35,7 +35,9 @@ function App() {
     <Header />
     <SearchBar 
     onFormSubmit={setQuery}
-    inputValue= {search} />
+    inputValue= {search}
+    onChangeInputValue={setSearch}
+     />
     <Message content={`La recherche a donné ${reposData.total_count} résultats`}/>
     <ReposResults results={results} />
   </div>
