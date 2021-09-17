@@ -31,6 +31,8 @@ function App() {
   const [query, setQuery] = useState('');
   // state qui prend en charge le total des résultats
   const [totalCount, setTotalCount] = useState(0);
+    // state qui prend en charge l'apparition du message
+    const [isVisible, setIsVisible] = useState(false);
 
   const loadData = () => {
     if (query !== '') {
@@ -41,6 +43,7 @@ function App() {
           const trimmedData = trimGithubData(response.data.items);
           setResults([...results, ...trimmedData]);
           setTotalCount(response.data.total_count);
+          setIsVisible(true);
         })
         .catch((error) => console.log(`error`, error));
     }
@@ -71,7 +74,7 @@ function App() {
     inputValue= {search}
     onChangeInputValue={setSearch}
      />
-    <Message content={getMessage()}/>
+    {isVisible && <Message content={getMessage()} showMessage={setIsVisible} />}
     <ReposResults results={results} />
   </div>
   );
