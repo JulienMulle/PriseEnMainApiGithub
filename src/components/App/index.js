@@ -16,8 +16,7 @@ import './style.scss';
 
 // == Composant
 function App() {
-  const trimGithubData = (items) => items.map((item) => (
-  {
+  const trimGithubData = (items) => items.map((item) => ({
     id: item.id,
     description: item.description,
     title: item.full_name,
@@ -25,7 +24,7 @@ function App() {
     login: item.owner.login,
   }));
 
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(trimmedData);
   // state pour gérer ce qu'il y a dans l'input text
   const [search, setSearch] = useState('');
   // state qui va prendre le nom qu'on placera dans la requête
@@ -34,16 +33,16 @@ function App() {
   const [totalCount, setTotalCount] = useState(0);
 
   const loadData = () => {
-    if (query !==''){
+    if (query !== '') {
       axios.get(`https://api.github.com/search/repositories?q=${query}`)
-      .then((response)=> {
-                  // une fois que j'ai reçu je vais utiliser la fonction qui va réduire
+        .then((response) => {
+          // une fois que j'ai reçu je vais utiliser la fonction qui va réduire
           // le nombre de propriétés attendues pour chaque objet dans le tableau
           const trimmedData = trimGithubData(response.data.items);
-          setResults(trimmedData);
+          setResults([...results, ...trimmedData]);
           setTotalCount(response.data.total_count);
-      })
-      .catch((error) => console.log(`error`, error));
+        })
+        .catch((error) => console.log(`error`, error));
     }
   };
     // au 1e rendu du composant je teste la requête dans un 1e temps
