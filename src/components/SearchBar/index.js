@@ -11,7 +11,7 @@ function SearchBar({ onFormSubmit, inputValue, onChangeInputValue }) {
     // c'est déjà prévu dans le composant Form de SUI
     console.log('handleOnSubmit');
     onFormSubmit('test');
-    onFormSubmit(inputValue);
+    onFormSubmit();
     };
 
     const handleOnChange = (event) => {
